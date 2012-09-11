@@ -1,4 +1,5 @@
 var http = require('http');
+var fs = require('fs');
 //var util = require('util');
 //var events = require('events');
 //var StringDecoder = require('string_decoder').StringDecoder;
@@ -20,6 +21,19 @@ http.createServer(function(request, response) {
             response.writeHead(302, {'Location' :  "http://" + target  + request.url});
             response.end();
         }
+
+        else if (request.url == "/om_dhen" || request.url == "/om_dhen/" ) {
+            fs.readFile('/home/oivvio/dhen/om_dhen.html', function(error, content) {
+                if (error) {
+                    response.writeHead(500);
+                    response.end();
+                }
+                else {
+                    response.writeHead(200, { 'Content-Type': 'text/html' });
+                    response.end(content, 'utf-8');
+                }
+            });
+        } 
 
         else {
 
@@ -53,36 +67,36 @@ http.createServer(function(request, response) {
                 proxy_response.addListener('end', function() {
 
                     //at the end write all our data out
-                
+
                     //Before that data goes on the wire let's do some replacements
                     //
 
                     //var t1 = new Date().getTime();
                     data = data.replace(/\bhan\b/g, "hen");
                     data = data.replace(/\bhon\b/g, "hen");
-                    
+
                     data = data.replace(/\bhonom\b/g, "henom");
                     data = data.replace(/\bhenne\b/g, "henom");
-                    
+
                     data = data.replace(/\bhans\b/g, "hens");
                     data = data.replace(/\bhennes\b/g, "hens");
-                    
+
                     data = data.replace(/\bman\b/g, "en");
-                   
+
                     data = data.replace(/\bHan\b/g, "Hen");
                     data = data.replace(/\bHon\b/g, "Hen");
-                    
+
                     data = data.replace(/\bHonom\b/g, "Henom");
                     data = data.replace(/\bHenne\b/g, "Henom");
-                    
+
                     data = data.replace(/\bHans\b/g, "Hens");
                     data = data.replace(/\bHennes\b/g, "Hens");
-                    
+
                     data = data.replace(/\bMan\b/g, "En");
-                    
+
                     data = data.replace(/\bDN\b/g, "DHEN");
 
-                    
+
                     response.write(data, 'utf8');
 
 
