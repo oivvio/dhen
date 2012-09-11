@@ -15,20 +15,30 @@ http.createServer(function(request, response) {
 
 
     var pattern = RegExp("\\.");
-    if (pattern.test(request.url))
+
+    if ( /om_dhen/.test(request.url) ) {
+    
+            var fn = "/home/oivvio/dhen" + request.url;
+            console.log("get me " + fn);
+            fs.readFile(fn, function(error, content) {
+                if (error) {
+                    response.writeHead(500);
+                    response.end();
+}
+    else if (pattern.test(request.url))
         {
 
             response.writeHead(302, {'Location' :  "http://" + target  + request.url});
             response.end();
         }
 
-        else if (request.url == "/om_dhen" || request.url == "/om_dhen/" ) {
-            fs.readFile('/home/oivvio/dhen/om_dhen.html', function(error, content) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
+        //else if (  request.url == "/om_dhen" || request.url == "/om_dhen/" ) {
+        else if ( /om_dhen/.test(request.url) ) {
+
+        
                 }
                 else {
+
                     response.writeHead(200, { 'Content-Type': 'text/html' });
                     response.end(content, 'utf-8');
                 }
