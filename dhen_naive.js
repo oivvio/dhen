@@ -5,10 +5,10 @@ var http = require('http');
 //var decoder = new StringDecoder('utf8');
 
 //var proxyhost = "http://127.0.0.1:8080";
-var proxyport = 8080; 
-//var target = "www.dn.se";
+var proxyport = 80; 
+var target = "www.dn.se";
 //var target = "oivviosarkiv.polite.se";
-var target = "forskjutningar.se";
+//var target = "forskjutningar.se";
 
 http.createServer(function(request, response) {
 
