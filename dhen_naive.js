@@ -79,6 +79,8 @@ http.createServer(function(request, response) {
                     data = data.replace(/\bHennes\b/g, "Hens");
                     
                     data = data.replace(/\bMan\b/g, "En");
+                    
+                    data = data.replace(/\bDN\b/g, "DHEN");
 
                     
                     response.write(data, 'utf8');
