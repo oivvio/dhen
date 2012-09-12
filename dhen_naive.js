@@ -9,7 +9,7 @@ var fs = require('fs');
 //var decoder = new StringDecoder('utf8');
 
 //var proxyhost = "http://127.0.0.1:8080";
-var proxyport = 8080; 
+var proxyport = 80; 
 var target = "www.dn.se";
 var projectfolder = "/home/oivvio/dhen";
 //var target = "oivviosarkiv.polite.se";
@@ -26,10 +26,8 @@ http.createServer(function(request, response) {
 
     if ( /om_dhen/.test(request.url) ) {
 
-
         if (request.url == "/om_dhen" || request.url == "/om_dhen/") {
             var fn = projectfolder +  "/om_dhen/index.html";
-
 
         } else {
             var fn = projectfolder + request.url; 
@@ -68,6 +66,9 @@ http.createServer(function(request, response) {
 
     else {
 
+        //for now redirect to our about page
+	response.writeHead(302, {'Location' :  "http://dhen.se/om_dhen"});
+        response.end();
 
         var proxy = http.createClient(80, target)
 
